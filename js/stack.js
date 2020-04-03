@@ -1,5 +1,7 @@
 //栈  后进先出的数据结构 LIFO
 
+// 作用  在编程语言的编译器和内存中保存变量、方法调用
+
 // push     入栈
 // pop      出栈
 // peek 窥视  查看栈顶 
@@ -54,3 +56,22 @@ var to2 = function (number){
   return result;
 }
 console.log(to2(100));
+
+
+// 先完成fn1，再完成fn2
+
+var fn1 = function(){
+  return console.log('fn1 finish ')
+}
+
+var fn2 = function(){
+  fn1()
+  return console.log('fn2 finish ')
+}
+
+// 先调用先入栈
+
+// var app = function (){
+//   app()
+// }
+//递归 函数调用自己本身
