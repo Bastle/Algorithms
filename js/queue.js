@@ -57,6 +57,11 @@ var chuanhua = function(names, number){
 //    name: 'naruto',
 //    priority: 5
 // }
+// Object{
+//    name: 'sasuke',
+//    priority: 4
+// }
+
 var PriorityQueue = function (){
   var items = [];
   // 辅助类
@@ -79,7 +84,7 @@ var PriorityQueue = function (){
     }
   }
   this.dequeue = function(){
-    
+
   }
   this.getItems = function (){
     return items;
