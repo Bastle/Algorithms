@@ -41,21 +41,25 @@ var LinkedList = function() {
     return -1;
   }
   this.insert = function(position, element) {
-    var node = new Node(element);
-    if(position === 0 || !head){
-      node.next = head;
-      head = node;
-    } else if(head){
-      var index = 0;
+    // 越界问题
+    if(position > -1 && position < length){
+      var node = new Node(element);
       var current = head;
-      var previous = null;
-      while(index < position){
-        previous = current;
-        current = current.next;
-        index++;
-      };
-      previous.next = node;
-      node.next = current;
+      if(position === 0 || !head){
+        head = node;
+        node.next = current;
+      } else if(head){
+        var index = 0;
+        var previous = null; 
+        while(index < position){
+          previous = current;
+          current = current.next;
+          index++;
+        };
+        previous.next = node;
+        node.next = current;
+      }
+      length++;
     }
   }
   this.remove = function(element) {
