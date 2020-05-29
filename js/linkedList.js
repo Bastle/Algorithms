@@ -56,24 +56,50 @@ var LinkedList = function() {
           current = current.next;
           index++;
         };
+        node.next = previous.next;
         previous.next = node;
-        node.next = current;
+
+        // previous.next = node;
+        // node.next = current;
       }
       length++;
     }
   }
   this.remove = function(element) {
-
+    this.removeAt(this.indexOf(element));
   }
   this.removeAt = function(position) {
-
+    if(position > -1){
+      if(position === 0 && head){
+        head = current.next;
+      } else if(head){
+        var index = 0;
+        var current = head;
+        var previous = null;
+        while(index < position){
+          previous = current;
+          current = current.next;
+          index++;
+        }
+        previous.next = current.next;
+        length--;
+      }
+    }
   }
 }
 
 var ll = new LinkedList();
+console.log(ll.getHead());
 ll.append(1);
+console.log(ll.getHead());
 ll.append(2);
+console.log(ll.getHead());
 ll.append(3);
+console.log(ll.getHead());
 ll.insert(0,0);
-console.log(ll);
-console.log(ll.getHead() );
+console.log(ll.getHead());
+ll.remove(3);
+console.log(ll.getHead());
+ll.insert(12,10);
+console.log(ll.getHead());
+
