@@ -27,7 +27,8 @@ var Player = (function() {
   Player.prototype.attack = function(harm, boss){
     boss.getInjured(harm);
     console.log(`我是${this.name}, 我对boss造成了${harm}点伤害`)
-    if(boss.getHp <= 0){
+    if(boss.getHp() <= 0){
+      boss.hp = 0;
       console.log('boss 被击败了');
     }
   }
@@ -36,10 +37,12 @@ var Player = (function() {
 
 var p1 = new Player('剑圣');
 var p2 = new Player('刺客');
+var p3 = new Player('法师');
 
 
 p1.attack(12, Boss.getInstance());
 p2.attack(200, Boss.getInstance());
+p3.attack(12000, Boss.getInstance());
 
 console.log(Boss.getInstance().getHp());
 
@@ -148,6 +151,7 @@ var EventEmitter = (function(){
       throw Error('')
     }
     if(typeof key === 'number'){
+      console.log('this1' ,this)
       this.events[name].forEach(x => x.key === key && x());
     } else {
       this.events[name].forEach(x => x());
@@ -169,6 +173,6 @@ const enemyDiedId1 = em.on('enemyDied', function(){
 const enemyDiedId2 = em.on('enemyDied', function(){
   console.log('敌人2死亡');
 })
-em.emit('friendDied', friendDiedId2);
-em.emit('enemyDied', enemyDiedId2);
-em.emit('enemyDied', 10);
+em.emit('friendDied', friendDiedId1);
+// em.emit('enemyDied', enemyDiedId2);
+// em.emit('enemyDied', 10);
