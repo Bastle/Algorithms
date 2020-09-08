@@ -12,7 +12,7 @@ function mergeSort(list){
         j++
       }
     }
-    return result.concat(left.slice(i), right.concat(j));
+    return result.concat(left.slice(i), right.slice(j));
   }
   function _ms(a) {
     if(a.length < 2) return a;
