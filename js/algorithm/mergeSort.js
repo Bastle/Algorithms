@@ -1,5 +1,8 @@
 
-
+// 归并排序
+// 通过将数组不断拆分，直至拆分至最小数量后对数组进行合并操作，
+// 在合并操作中使用双指针按照顺序将数字逐个添加至新的数组中，
+// 最后得到一个已经排好顺序的数组。
 function mergeSort(list){
   function _merge(left, right){
     var result = [], i = 0, j = 0;

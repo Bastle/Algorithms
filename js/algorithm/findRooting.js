@@ -7,9 +7,9 @@
         return average;
       }
       if(Math.pow(average, 2) > num){
-        root(a, average);
+        return root(a, average);
       } else if(Math.pow(average, 2) < num){
-        root(average, b);
+        return root(average, b);
       }
     }
     let result = root(0, num);
