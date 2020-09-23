@@ -26,4 +26,8 @@ function mergeSort(list){
   }
   return _ms(list);
 }
+
+function mergeSort2 (arr) {
+
+}
 console.log(mergeSort([3,12,5,6,95,1,3]));

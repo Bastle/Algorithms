@@ -16,5 +16,5 @@
     console.log('result', result);
     return result;
   }
-  findRooting(9)
+  findRooting(9) 
 })()

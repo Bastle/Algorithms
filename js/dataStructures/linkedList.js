@@ -58,9 +58,6 @@ var LinkedList = function() {
         };
         node.next = previous.next;
         previous.next = node;
-
-        // previous.next = node;
-        // node.next = current;
       }
       length++;
     }
@@ -88,18 +85,127 @@ var LinkedList = function() {
   }
 }
 
-var ll = new LinkedList();
-console.log(ll.getHead());
-ll.append(1);
-console.log(ll.getHead());
-ll.append(2);
-console.log(ll.getHead());
-ll.append(3);
-console.log(ll.getHead());
-ll.insert(0,0);
-console.log(ll.getHead());
-ll.remove(3);
-console.log(ll.getHead());
-ll.insert(12,10);
-console.log(ll.getHead());
 
+class Node {
+  constructor(data){
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedListClass {
+  constructor(){
+    this.head = null;
+    this.length = 0;
+  }
+  append(data){
+    let node = new Node(data);
+    if(this.head) {
+      let cur = this.head;
+      while(cur.next){
+        cur = cur.next;
+      }
+      cur.next = node;
+    } else {
+      this.head = node;
+    }
+    this.length++
+    return true;
+  }
+  add(data){
+    let node = new Node(data);
+    if(!this.head) {
+      this.head = node;
+    } else {
+      node.next = this.head;
+      this.head = node;
+    }
+    this.length++;
+    return true;
+  }
+  insert(data, pos){
+    if(pos >= this.length){
+      this.append(data);
+    }
+    if(pos === 0 || !this.head){
+      this.add(data);
+    }
+    let node = new Node(data);
+    let index = 0;
+    let pre = this.head;
+    let cur = this.head.next;
+    while(cur !== null){
+      index ++;
+      if(index === pos){
+        node.next = cur;
+        pre.next = node;
+        return true;
+      } else {
+        pre = cur;
+        cur = cur.next
+      }
+    }
+    return false;
+  }
+  indexOf(data){
+    if(!this.head) return -1;
+    let index = 0;
+    let cur = this.head;
+    while(cur.next !== null){
+      if(cur.data === data){
+        return index;
+      }
+      index++
+      cur = cur.next;
+    }
+    return cur.data === data ? index : -1;
+  }
+  remove(data){
+    this.removeAt(this.indexOf(data));
+  }
+  removeAt(pos){
+    if(pos < 0 || pos >= this.length) return false;
+    if(pos === 0){
+      this.head = this.head.next;
+      this.length--;
+      return true;
+    }
+    let index = 1;
+    let pre = this.head;
+    let cur = this.head.next;
+    while(cur.next !== null){
+      if(index === pos){
+        pre.next = cur.next;
+        this.length--;
+        return true;
+      }
+      index++;
+      pre = cur;
+      cur = cur.next;
+    }
+    if(index === pos){
+      pre.next = cur.next;
+      this.length--;
+      return true;
+    }
+    return false;
+  }
+  clear(){
+    this.head = null;
+  }
+  size(){
+    return this.length;
+  }
+  getHead(){
+    return this.head;
+  }
+}
+
+let linkedlist = new LinkedListClass();
+linkedlist.append(1);
+linkedlist.append(2);
+linkedlist.add(0);
+console.log(linkedlist);
+console.log(linkedlist.indexOf(2));
+linkedlist.remove(1);
+console.log(linkedlist);
