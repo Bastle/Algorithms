@@ -112,33 +112,25 @@ class LinkedListClass {
     this.length++
     return true;
   }
-  add(data){
-    let node = new Node(data);
-    if(!this.head) {
-      this.head = node;
-    } else {
-      node.next = this.head;
-      this.head = node;
-    }
-    this.length++;
-    return true;
-  }
   insert(data, pos){
     if(pos >= this.length){
       this.append(data);
+      return true;
     }
     if(pos === 0 || !this.head){
       this.add(data);
+      return true;
     }
     let node = new Node(data);
     let index = 0;
     let pre = this.head;
     let cur = this.head.next;
-    while(cur !== null){
+    while(cur){
       index ++;
       if(index === pos){
         node.next = cur;
         pre.next = node;
+        this.length++;
         return true;
       } else {
         pre = cur;
@@ -151,14 +143,14 @@ class LinkedListClass {
     if(!this.head) return -1;
     let index = 0;
     let cur = this.head;
-    while(cur.next !== null){
+    while(cur){
       if(cur.data === data){
         return index;
       }
       index++
       cur = cur.next;
     }
-    return cur.data === data ? index : -1;
+    return -1;
   }
   remove(data){
     this.removeAt(this.indexOf(data));
@@ -173,7 +165,7 @@ class LinkedListClass {
     let index = 1;
     let pre = this.head;
     let cur = this.head.next;
-    while(cur.next !== null){
+    while(cur){
       if(index === pos){
         pre.next = cur.next;
         this.length--;
@@ -183,15 +175,11 @@ class LinkedListClass {
       pre = cur;
       cur = cur.next;
     }
-    if(index === pos){
-      pre.next = cur.next;
-      this.length--;
-      return true;
-    }
     return false;
   }
   clear(){
     this.head = null;
+    return true;
   }
   size(){
     return this.length;
@@ -205,7 +193,6 @@ let linkedlist = new LinkedListClass();
 linkedlist.append(1);
 linkedlist.append(2);
 linkedlist.add(0);
-console.log(linkedlist);
-console.log(linkedlist.indexOf(2));
-linkedlist.remove(1);
+linkedlist.insert(10,3);
+linkedlist.removeAt(4);
 console.log(linkedlist);
