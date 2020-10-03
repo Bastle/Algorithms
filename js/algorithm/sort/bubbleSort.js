@@ -6,18 +6,18 @@
   //    又因为每一项要与其后一项进行比较，所以最后一项不需要比较，要在 len - i 的基础上再 -1；
 
   // 2、替换的方法    es6 数组解构: [a, b] = [b, a]   利用中间变量  var temp = a[i]; a[i] = a[j]; a[j] = temp;
+  [3,2,1]
   function bubbleSort(list) {
     if(Array.isArray(list)){
       let len = list.length;
-      for(let i = 0; i < len; i++){
-        for(let j = 0; j < len - i - 1; j++){
-          if(list[j] > list[j+1]){
-            [list[j], list[j+1]] = [list[j+1], list[j]]
+      for(let i = 0; i < len; i++){            
+        for(let j = 0; j < len - i - 1; j++){            
+          if(list[j] > list[j+1]){                      
+            [list[j], list[j+1]] = [list[j+1], list[j]]    
           }
         }
       }
     }
     return list;
   }
-  console.log(bubbleSort([3,2,4,1,5,3]));
 })()

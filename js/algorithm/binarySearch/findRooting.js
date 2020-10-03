@@ -3,7 +3,6 @@
     function root(a, b){
       var average = (a+b)/2;
       if(Math.abs(num - Math.pow(average, 2)) < 0.0000000001){
-        console.log('average', average)
         return average;
       }
       if(Math.pow(average, 2) > num){
@@ -13,7 +12,6 @@
       }
     }
     let result = root(0, num);
-    console.log('result', result);
     return result;
   }
   findRooting(9) 

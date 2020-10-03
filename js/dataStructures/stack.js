@@ -75,3 +75,22 @@ var fn2 = function(){
 //   app()
 // }
 //递归 函数调用自己本身
+
+function isMatch(symbols){
+  let stack = new Stack();
+  let left = '{[(<';
+  let right = '}])>';
+  for(let i = 0; i < symbols.length; i++){
+    let s = symbols[i];
+    if(left.includes(s)){
+      stack.push(s);
+    } else if(right.includes(s)){
+      let popVal = stack.pop();
+      if(left.indexOf(popVal) !== right.indexOf(s)){
+        return false;
+      }
+    }
+  }
+  return true;
+}
+console.log(isMatch('{[}'));
